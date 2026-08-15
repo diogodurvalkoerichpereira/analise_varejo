@@ -1,0 +1,137 @@
+========================================================================
+1. CARREGAMENTO E ESTRUTURA ORIGINAL
+========================================================================
+Arquivo: /workspace/scratch/42f440e9a35e/Miniprojeto_Diogo_Durval_Koerich_Pereira_T3/dados/Base Varejo.csv.zip
+Número de registros: 830.000
+Número de colunas: 14
+Colunas e tipos de dados:
+DATA            object
+CO_ID            int64
+CL_ID            int64
+CL_GENERO       object
+CL_EC            int64
+CL_FHL           int64
+CL_SEG          object
+PR_ID            int64
+PR_CAT          object
+PR_NOME         object
+Unnamed: 10    float64
+Unnamed: 11    float64
+Unnamed: 12    float64
+Unnamed: 13    float64
+
+========================================================================
+2. DIAGNÓSTICO DE QUALIDADE
+========================================================================
+Valores nulos por coluna:
+              nulos  percentual
+DATA              0         0.0
+CO_ID             0         0.0
+CL_ID             0         0.0
+CL_GENERO         0         0.0
+CL_EC             0         0.0
+CL_FHL            0         0.0
+CL_SEG            0         0.0
+PR_ID             0         0.0
+PR_CAT            0         0.0
+PR_NOME           0         0.0
+Unnamed: 10  830000       100.0
+Unnamed: 11  830000       100.0
+Unnamed: 12  830000       100.0
+Unnamed: 13  830000       100.0
+
+Colunas 100% vazias: ['Unnamed: 10', 'Unnamed: 11', 'Unnamed: 12', 'Unnamed: 13']
+Linhas totalmente duplicadas: 96.553 (11.63%)
+Datas inválidas ou vazias: 0
+Categorias vazias ou marcadas como #N/D: 3.650
+
+========================================================================
+3. LIMPEZA E REGRAS DE NEGÓCIO
+========================================================================
+Colunas 100% vazias removidas: ['Unnamed: 10', 'Unnamed: 11', 'Unnamed: 12', 'Unnamed: 13']
+Dimensões físicas: a base fornecida não contém colunas de altura, largura, comprimento ou peso; nenhum valor foi inventado.
+Categorias preenchidas com 'Sem Categoria': 3.650
+Valores de número de filhos imputados pela moda: 0
+Valores de estado civil imputados pela moda: 0
+Valores de dimensões físicas imputados pela mediana: 0
+Linhas removidas por ausência de data/ID obrigatório: 0
+Linhas removidas por IDs não positivos: 0
+Compras com conflito entre CO_ID, cliente e data: 0
+Linhas pertencentes a compras conflitantes removidas: 0
+Duplicatas exatas removidas: 96.553
+Registros finais: 733.447
+Tipos após a limpeza:
+DATA         datetime64[ns]
+CO_ID                 Int64
+CL_ID                 Int64
+CL_GENERO    string[python]
+CL_EC                 Int64
+CL_FHL                Int64
+CL_SEG       string[python]
+PR_ID                 Int64
+PR_CAT       string[python]
+PR_NOME      string[python]
+
+========================================================================
+4. ESTATÍSTICAS DO NÚMERO DE FILHOS
+========================================================================
+Estatísticas exigidas — coluna CL_FHL da base limpa:
+  estatistica     valor
+     contagem    733447
+        media  1.146049
+      mediana       0.0
+desvio_padrao  1.416917
+         moda         0
+       maximo         4
+       minimo         0
+
+Estatísticas complementares — um registro por cliente:
+Clientes com valores divergentes de CL_FHL: 0 (nesses casos seria usada a moda do cliente).
+  estatistica    valor
+     contagem     1000
+        media    1.136
+      mediana      0.0
+desvio_padrao  1.41333
+         moda        0
+       maximo        4
+       minimo        0
+
+========================================================================
+5. PADRÕES DE AGRUPAMENTO
+========================================================================
+Agrupamento 1 — gênero do cliente:
+           volume_itens  compras_unicas  clientes_unicos  participacao_itens_pct  itens_por_compra
+CL_GENERO                                                                                         
+F                382427            9615              519                   52.14             39.77
+M                351020            8856              481                   47.86             39.64
+
+Agrupamento 2 — categoria do produto:
+               volume_itens  compras_unicas  clientes_unicos  participacao_itens_pct
+PR_CAT                                                                              
+ALIMENTOS            384197           18267             1000                   52.38
+HIGIENE              137702           17610             1000                   18.77
+LIMPEZA              128632           17475             1000                   17.54
+BEBIDAS               38264           14735             1000                    5.22
+PET                   28553           13495             1000                    3.89
+ACESSORIOS            12871            9224             1000                    1.75
+Sem Categoria          3228            3228              956                    0.44
+
+Agrupamento 3 — evolução mensal (primeiros e últimos meses):
+         volume_itens  compras_unicas  clientes_unicos
+MES                                                   
+2019-01          6492             171              155
+2019-02         16153             402              322
+2019-03          9835             257              229
+2022-10          2373              59               56
+2022-11          6192             155              145
+2022-12         13204             313              266
+
+========================================================================
+6. CONCLUSÕES
+========================================================================
+1. A base tinha 830.000 linhas e 14 colunas; 4 colunas totalmente vazias, originadas por separadores excedentes, foram removidas.
+2. Foram eliminadas 96.553 duplicatas exatas (11.63% da base original), restando 733.447 registros de itens.
+3. A categoria ausente foi padronizada como 'Sem Categoria'; após a limpeza, ela representa 0.44% do volume de itens.
+4. O gênero F concentrou 52.14% dos itens, enquanto ALIMENTOS foi a categoria líder, com 52.38%.
+5. Na coluna CL_FHL, a média foi 1.146, com mediana 0 e moda 0. Na visão complementar de 1.000 clientes únicos, a média foi 1.136. O maior volume mensal ocorreu em 2021-10.
+6. Limitação remanescente: a base não possui quantidade, preço ou valor monetário. Assim, 'volume de itens' significa número de linhas após a deduplicação e não receita ou unidades físicas comprovadas; duplicatas exatas também poderiam representar várias unidades do mesmo produto, hipótese impossível de confirmar.

@@ -1,0 +1,6 @@
+1. A base tinha 830.000 linhas e 14 colunas; 4 colunas totalmente vazias, originadas por separadores excedentes, foram removidas.
+2. Foram eliminadas 96.553 duplicatas exatas (11.63% da base original), restando 733.447 registros de itens.
+3. A categoria ausente foi padronizada como 'Sem Categoria'; após a limpeza, ela representa 0.44% do volume de itens.
+4. O gênero F concentrou 52.14% dos itens, enquanto ALIMENTOS foi a categoria líder, com 52.38%.
+5. Na coluna CL_FHL, a média foi 1.146, com mediana 0 e moda 0. Na visão complementar de 1.000 clientes únicos, a média foi 1.136. O maior volume mensal ocorreu em 2021-10.
+6. Limitação remanescente: a base não possui quantidade, preço ou valor monetário. Assim, 'volume de itens' significa número de linhas após a deduplicação e não receita ou unidades físicas comprovadas; duplicatas exatas também poderiam representar várias unidades do mesmo produto, hipótese impossível de confirmar.
